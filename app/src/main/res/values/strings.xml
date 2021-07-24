@@ -2,4 +2,24 @@
     <string name="app_name">My First App</string>
     <string name="edit_message">Enter a message</string>
     <string name="button_send">Send</string>
+
+    <string-array name="break_altitudes">
+        <item>7000</item>
+        <item>6500</item>
+        <item>6000</item>
+        <item>5500</item>
+        <item>5000</item>
+        <item>4500</item>
+        <item>4000</item>
+        <item>None</item>
+    </string-array>
+    <string-array name="deploy_altitudes">
+        <item>6000</item>
+        <item>5500</item>
+        <item>5000</item>
+        <item>4500</item>
+        <item>4000</item>
+        <item>3500</item>
+        <item>3000</item>
+    </string-array>
 </resources>
