@@ -1,6 +1,7 @@
 package com.example.myfirstapp.altimeterservice;
 
 import android.hardware.SensorEvent;
+import android.os.Looper;
 
 public class PressureSimulator implements Runnable{
     private PressureEventListener pressureEventListener;
@@ -9,8 +10,14 @@ public class PressureSimulator implements Runnable{
         pressureEventListener = pel;
     }
 
+    private void sendEvent(){
+
+    }
+
     @Override
     public void run() {
-        //pressureEventListener.onSensorChanged();
+        Looper.prepare();
+
+        PressureSimulatorHandler handle = new PressureSimulatorHandler();
     }
 }

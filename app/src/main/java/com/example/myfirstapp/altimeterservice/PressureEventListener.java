@@ -28,6 +28,17 @@ public class PressureEventListener implements SensorEventListener {
         isSimulating = false;
     }
 
+    public void simSensorChanged(MockSensorEvent event){
+        long eventStamp = event.timestamp/100000000;
+        if (eventStamp > lastPublishTime){
+            lastPublishTime = eventStamp;
+            PressureEvent pe = new PressureEvent(event, sm);
+            messageSender(pe);
+
+
+        }
+    }
+
     public PressureEventListener(SensorManager sm, AltimeterHandler ah){
         this.sm = sm;
         lastPublishTime = 0;

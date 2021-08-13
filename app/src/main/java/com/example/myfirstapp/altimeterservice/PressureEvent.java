@@ -1,19 +1,20 @@
 package com.example.myfirstapp.altimeterservice;
 
+import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorManager;
 import com.google.gson.Gson;
 
 public class PressureEvent {
-    private SensorEvent pressureEvent;
-    private SensorManager pressureManager;
+    private int pressure;
+    private long timestamp;
 
     public int getPressure(){
-        return Math.round(pressureEvent.values[0]);
+        return pressure;
     }
 
     public long getTimeStamp(){
-        return pressureEvent.timestamp;
+        return timestamp;
     }
 
     public long getMillis(){
@@ -21,7 +22,7 @@ public class PressureEvent {
     }
 
     public int getAltitude(int groundPressure, String unit){
-        int altM =  (int)pressureManager.getAltitude(groundPressure, getPressure());
+        int altM =  (int)SensorManager.getAltitude(groundPressure, getPressure());
         if (unit != null && unit.equals("meters")){
             return altM;
         }
@@ -51,8 +52,13 @@ public class PressureEvent {
     }
 
     public PressureEvent(SensorEvent se, SensorManager sm){
-        pressureEvent = se;
-        pressureManager = sm;
+        this.pressure = Math.round(se.values[0]);
+        this.timestamp = se.timestamp;
+    }
+
+    public PressureEvent(MockSensorEvent se, SensorManager sm){
+        this.pressure = Math.round(se.values[0]);
+        this.timestamp = se.timestamp;
     }
 
     public String toJson(){
